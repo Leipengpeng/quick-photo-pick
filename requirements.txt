@@ -1,0 +1,9 @@
+numpy==2.3.5
+opencv-contrib-python==5.0.0.93
+Pillow==12.0.0
+rawpy==0.28.0
+ImageHash==4.3.2
+tifffile==2025.10.4
+scipy==1.16.3
+PyWavelets==1.10.0
+mediapipe==0.10.32

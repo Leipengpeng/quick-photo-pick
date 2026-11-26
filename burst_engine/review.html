@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>摄影选片</title>
+<style>
+:root{--ink:#f7f5ef;--dim:#c3c4bb;--paper:#171917;--card:#20231e;--line:#45493e;--accent:#dbea9f;--warm:#f5c29e;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:81px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 'Microsoft YaHei UI','Microsoft YaHei','Segoe UI',sans-serif}h1,h2,h3,p,figure,dl,dd{margin:0}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}button,select{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{cursor:default}[hidden]{display:none!important}
+.wrap{width:min(1016px,calc(100% - 44px));margin-inline:auto}.site{position:sticky;z-index:3;top:0;background:#171917f6;border-bottom:1px solid var(--line)}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:64px}.brand{font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:8px}.brand::before{content:'';width:10px;height:10px;background:var(--accent);border-radius:100%}.nav{display:flex;align-items:center;gap:clamp(12px,4vw,33px);color:var(--dim)}.nav a:hover{color:var(--accent)}.button{display:inline-block;background:#2d3028;border:1px solid #575d4e;border-radius:8px;padding:6px 12px;color:var(--ink);white-space:nowrap}.button:hover{border-color:var(--accent)}.primary{color:#252a1d;background:var(--accent);border-color:var(--accent);font-weight:800}.summary{padding:34px 0 25px;display:grid;grid-template-columns:1fr 1.2fr;align-items:end;gap:18px 28px}.summary h1{font-size:clamp(32px,5vw,62px);letter-spacing:-.065em;line-height:1.12;margin-bottom:7px}.muted{color:var(--dim)}.totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}.totals div{min-width:0;padding:10px 11px}.totals div+div{border-left:1px solid var(--line)}.totals dt{color:var(--dim);font-size:12px;white-space:nowrap}.totals dd{font-size:clamp(24px,3.9vw,43px);line-height:1.15;font-weight:850;font-variant-numeric:tabular-nums}.totals div:last-child dd{color:var(--accent)}
+section{margin-bottom:33px}.heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:11px}h2{font-size:29px;letter-spacing:-.035em}.groups{display:grid;gap:10px}.group{display:grid;grid-template-columns:minmax(120px,168px) minmax(0,1fr);gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}.group.active{border-color:var(--accent)}.group-info{padding:3px 4px}.group-info h3{font-size:17px;line-height:1.25;margin:3px 0}.eyebrow,.group-info p{font-size:12px;color:var(--dim)}.group-info button{margin-top:6px;font-size:12px}.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(100px,1fr);gap:7px;overflow-x:auto;padding:2px}.tile{min-width:0;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper);color:var(--ink);text-align:left}.tile:hover,.tile.best{border-color:var(--accent)}.image-box{position:relative;display:grid;place-items:center;aspect-ratio:4/3;background:#121412;overflow:hidden}.image-box img{width:100%;height:100%;object-fit:scale-down}.chip{font-size:11px;background:#202520;color:var(--ink);border-radius:4px;padding:3px 6px;white-space:nowrap}.image-box .chip{position:absolute;top:4px;left:4px;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis}.chip.best{background:var(--accent);color:#22281a;font-weight:800}.chip.issue{background:#5d302c;color:#ffe4da}.caption{padding:5px 7px;display:flex;flex-wrap:wrap;gap:2px 6px;justify-content:space-between;font-size:11px;color:var(--dim)}.caption strong{color:var(--ink);overflow-wrap:anywhere}.section-note{font-size:13px;color:var(--dim)}.chapter{font-size:14px;color:var(--dim);padding:3px 2px}
+.panel{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:14px}.choose{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}.choose button{font-size:13px}.choose [aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#22281a;font-weight:800}.compare-grid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.compare-grid .image-box{aspect-ratio:3/2}.compare-grid .caption{font-size:14px;padding:7px 10px}.compare-grid .chip{font-size:14px;top:7px;left:7px}.panel-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px;flex-wrap:wrap;color:var(--dim);font-size:13px}.comparison-label{font-weight:700;color:var(--ink)}
+.score-panel{display:grid;grid-template-columns:1fr 1fr;gap:15px}.score-side{min-width:0}.score-side .tile{display:block;width:100%}.score-side .image-box{aspect-ratio:2/1}.score-top{margin:8px 0 5px;display:flex;align-items:start;justify-content:space-between;gap:6px}.score-top strong{font-size:33px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}.score-top p{color:var(--dim);font-size:13px}.score-row{display:grid;grid-template-columns:4.3em minmax(42px,1fr) 3em;gap:6px;align-items:center;margin:7px 0;font-size:14px}.score-row meter{width:100%;height:13px;accent-color:var(--accent)}.score-row span:last-child{text-align:right;font-variant-numeric:tabular-nums}.picker{margin-bottom:11px}.picker select{background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:5px 7px;border-radius:6px;max-width:100%}footer{border-top:1px solid var(--line);padding:13px 0 27px;color:var(--dim);font-size:13px}
+dialog{margin:0;position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;padding:0;border:none;background:#111310;color:var(--ink)}dialog[open]{display:grid;grid-template-rows:56px minmax(0,1fr)}.preview{display:grid;min-height:0;place-items:center;padding:10px}.preview img{width:100%;height:100%;object-fit:scale-down}.preview-bar{background:#22251f}.preview-top{display:flex;align-items:center;justify-content:space-between;gap:10px;height:56px}.viewing{overflow:hidden}
+@media(max-width:710px){.wrap{width:calc(100% - 22px)}.top{flex-wrap:wrap;gap:5px 12px;padding:7px 0}.top .button{font-size:12px}.nav{gap:10px;font-size:13px}.summary{grid-template-columns:1fr;padding:21px 0;gap:12px}.totals div{padding:6px}.totals dt{font-size:10px}.heading{align-items:start;flex-direction:column;gap:2px}.group{grid-template-columns:minmax(0,1fr);gap:4px}.group-info{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.group-info h3{margin:0}.group-info button{margin:0}.panel{padding:8px}.compare-grid,.score-panel{gap:6px}.compare-grid .caption,.score-row{font-size:11px}.compare-grid .chip{font-size:11px}.score-row{grid-template-columns:3.4em minmax(15px,1fr) 2.6em;gap:3px}.score-top strong{font-size:23px}.score-top p{font-size:11px}}
+.image-box img,.preview img{position:absolute;inset:0;margin:auto}
+.preview{position:relative}
+.compare-grid.portrait-pair .image-box{aspect-ratio:4/5;max-height:510px}
+.scene-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
+.scene-card{min-width:0;padding:11px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.scene-card.shared{grid-column:1/-1;border-color:#747c54}.scene-card h3{font-size:17px}.scene-card .heading{margin-bottom:8px}
+.scene-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,128px),1fr));gap:7px}
+.scene-photo{display:block;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--paper);overflow:hidden}
+.scene-photo:hover{border-color:var(--accent)}.scene-photo .caption{font-size:12px}.scene-photo .image-box{max-height:320px}
+.nav a{white-space:nowrap}
+@media(max-width:390px){.scene-photos{grid-template-columns:repeat(auto-fit,minmax(min(100%,112px),1fr))}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap top"><a href="#start" class="brand">摄影选片</a><nav class="nav" aria-label="审片步骤"><a href="#timeline">分组</a><a href="#scenes" id="scene-tab" hidden>场景</a><a href="#comparison">最佳图片</a><a href="#scoring">评分</a><a id="quality-gallery" hidden>画质样张</a></nav><a class="button primary" id="open-folders" hidden>查看照片文件夹</a></div></header>
+<main class="wrap" id="start">
+  <div class="summary"><div><h1>摄影选片</h1><p class="muted" id="input-formats">按拍摄顺序整理照片。</p></div><dl class="totals" id="metrics" aria-label="选片结果"></dl></div>
+  <section id="timeline" aria-labelledby="timeline-heading"><div class="heading"><h2 id="timeline-heading">自动分组</h2><p class="section-note">每排一组，绿色标记为最佳图片。</p></div><div id="groups" class="groups"></div></section>
+  <section id="scenes" aria-labelledby="scenes-heading" hidden><div class="heading"><h2 id="scenes-heading">相似场景</h2><p class="section-note">同一场景可包含多组连拍。</p></div><div id="scene-list" class="scene-list"></div></section>
+  <section id="comparison" aria-labelledby="comparison-heading"><div class="heading"><h2 id="comparison-heading">最佳图片</h2><p class="section-note">同组照片并排查看。</p></div><div class="panel"><div class="choose" id="compare-controls" aria-label="选择照片组"></div><div id="compare-photos" class="compare-grid"></div><div id="compare-note" class="panel-footer"></div></div></section>
+  <section id="scoring" aria-labelledby="scoring-heading"><div class="heading"><h2 id="scoring-heading">组内评分</h2><p class="section-note">分数用于同组照片排序。</p></div><div class="panel"><div class="picker"><label for="score-pick">对照照片　</label><select id="score-pick"></select></div><div class="score-panel" id="scores"></div></div></section>
+  <footer>选片结果另存，原片保留。</footer>
+</main>
+<dialog id="viewer" aria-labelledby="viewer-title"><div class="preview-bar"><div class="wrap preview-top"><strong id="viewer-title"></strong><button class="button" id="viewer-close" type="button" autofocus>关闭</button></div></div><div class="preview"><img id="viewer-photo" alt=""></div></dialog>
+<script type="application/json" id="photo-data">__PHOTO_DATA__</script>
+<script>
+"use strict";
+const app=JSON.parse(document.getElementById("photo-data").textContent);
+const run=app.selection||app;
+const stats=app.stats||app.summary||{};
+const groups=(run.groups||[]).map(group=>({...group,id:group.id??group.group}));
+const scenes=run.scenes||run.scene_clusters||[];
+const byId=id=>document.getElementById(id);
+const groupMap=new Map(groups.map(group=>[String(group.id),group]));
+const labelFor=group=>group.title||"第 "+String(group.id).padStart(2,"0")+" 组";
+const timestamp=photo=>String(photo.timestamp||photo.capture_time||"");
+const nameFor=photo=>photo.filename||String(photo.path||"照片").split(/[/\\]/).pop();
+const keyFor=photo=>photo.path||photo.filename||"";
+const pretty=value=>Number.isFinite(value)?value.toFixed(1):"—";
+const dateFor=value=>String(value||"").replace(/^(\d{4}):(\d\d):(\d\d)/,"$1-$2-$3").replace("T"," ").slice(0,16);
+const sorted=group=>[...group.frames].sort((a,b)=>timestamp(a).localeCompare(timestamp(b))||nameFor(a).localeCompare(nameFor(b),undefined,{numeric:true}));
+const ranked=group=>[...group.frames].sort((a,b)=>(a.rank??Infinity)-(b.rank??Infinity));
+const selected=group=>ranked(group).filter(photo=>photo.decision==="select");
+function node(tag, css, value){const element=document.createElement(tag);if(css)element.className=css;if(value!==undefined)element.textContent=value;return element;}
+function button(label,handler,css="button"){const element=node("button",css,label);element.type="button";element.addEventListener("click",handler);return element;}
+function link(label,path,css="button"){
+  const anchor=node("a",css,label);anchor.href=path;return anchor;
+}
+function fitNative(image){
+  if(!image.naturalWidth)return;
+  const pixelRatio=window.devicePixelRatio||1;
+  image.style.maxWidth=Math.floor(image.naturalWidth/pixelRatio)+"px";
+  image.style.maxHeight=Math.floor(image.naturalHeight/pixelRatio)+"px";
+}
+function defect(photo){
+  if(photo.blink===true||photo.iqa?.broad?.blink?.closed===true||photo.reference?.expected==="closed")return "闭眼";
+  if(photo.reference?.expected==="blurred")return "模糊";
+  return "";
+}
+const viewer=byId("viewer");
+const viewerPhoto=byId("viewer-photo");
+viewerPhoto.addEventListener("load",()=>fitNative(viewerPhoto));
+window.addEventListener("resize",()=>document.querySelectorAll("img").forEach(fitNative));
+let opener;
+function openPhoto(photo){
+  if(!photo.src)return;
+  opener=document.activeElement;
+  const name=nameFor(photo);
+  byId("viewer-title").textContent=name;
+  viewerPhoto.alt=name;
+  viewerPhoto.src=photo.src;
+  viewer.showModal();
+  document.documentElement.classList.add("viewing");
+}
+byId("viewer-close").addEventListener("click",()=>viewer.close());
+viewer.addEventListener("close",()=>{document.documentElement.classList.remove("viewing");opener?.focus({preventScroll:true});});
+function tile(photo, options={}){
+  const isBest=photo.decision==="select";
+  const issue=defect(photo);
+  const title=nameFor(photo);
+  const card=button("",()=>openPhoto(photo),"tile"+(isBest?" best":""));
+  card.setAttribute("aria-label","查看照片 "+title);
+  card.setAttribute("aria-haspopup","dialog");
+  if(!photo.src)card.disabled=true;
+  const imageBox=node("div","image-box");
+  if(photo.src){const image=node("img");image.addEventListener("load",()=>fitNative(image));image.src=photo.src;image.alt=title;image.loading="lazy";image.decoding="async";imageBox.append(image);}
+  const badge=options.label||(isBest?"最佳图片":issue);
+  if(badge)imageBox.append(node("span","chip"+(isBest?" best":issue?" issue":""),badge));
+  const caption=node("div","caption");
+  caption.append(node("strong","",title));
+  if(Number.isFinite(photo.rank))caption.append(node("span","","第 "+photo.rank+" 名"));
+  card.append(imageBox,caption);
+  return card;
+}
+function scenePhoto(group, links){
+  const linkPaths=links
+    .map(link=>link.paths?.[link.groups?.findIndex(id=>String(id)===String(group.id))])
+    .filter(Boolean);
+  const showing=group.frames.filter(photo=>photo.src);
+  const photo=showing.find(frame=>linkPaths.includes(frame.path)||linkPaths.includes(frame.analyzed_path))
+    ||selected(group).find(frame=>frame.src)||sorted(group).find(frame=>frame.src);
+  const number=String(group.id).padStart(2,"0");
+  const label="第 "+number+" 组";
+  const card=link("", "#group-"+group.id, "scene-photo");
+  card.setAttribute("aria-label","查看"+label+" "+labelFor(group));
+  if(photo){
+    const imageBox=node("div","image-box");
+    const image=node("img");
+    image.addEventListener("load",()=>fitNative(image));
+    image.src=photo.src;image.alt=labelFor(group);image.loading="lazy";image.decoding="async";
+    imageBox.append(image);card.append(imageBox);
+  }
+  const caption=node("div","caption");
+  caption.append(node("strong","",label));
+  const date=dateFor(group.capture_time||timestamp(photo||group.frames[0]||{})).slice(0,10);
+  if(date)caption.append(node("span","",date));
+  card.append(caption);
+  return card;
+}
+function sceneGallery(){
+  const entries=scenes.map(scene=>({
+    scene,
+    members:(scene.groups||scene.burst_groups||[]).map(id=>groupMap.get(String(id))).filter(group=>group?.frames.length)
+  })).filter(entry=>entry.members.length);
+  if(!entries.length)return;
+  const list=byId("scene-list");
+  for(const {scene,members} of [...entries.filter(entry=>entry.members.length>1),...entries.filter(entry=>entry.members.length===1)]){
+    const card=node("article","scene-card"+(members.length>1?" shared":""));
+    const titles=new Set(members.map(labelFor));
+    const title=titles.size===1?labelFor(members[0]):"场景 "+(scene.id??scene.scene_id);
+    const heading=node("div","heading");
+    heading.append(node("h3","",title),node("p","section-note",members.length+" 组连拍"));
+    const photos=node("div","scene-photos");
+    for(const group of members)photos.append(scenePhoto(group,scene.links||app.evidence||run.scene_links||[]));
+    card.append(heading,photos);list.append(card);
+  }
+  byId("scenes").hidden=false;
+  byId("scene-tab").hidden=false;
+}
+function timeline(){
+  const list=byId("groups");
+  let seenReference=false;
+  for(const group of groups){
+    const photos=sorted(group);
+    if(!photos.length)continue;
+    if(group.role==="reference"&&!seenReference){list.append(node("p","chapter","瑕疵示例"));seenReference=true;}
+    const article=node("article","group");article.id="group-"+group.id;
+    const info=node("div","group-info");
+    info.append(node("p","eyebrow","第 "+String(group.id).padStart(2,"0")+" 组 · "+photos.length+" 张"),node("h3","",labelFor(group)),node("p","",group.role==="reference"?"示例照片":dateFor(group.capture_time||timestamp(photos[0]))));
+    info.append(button("查看本组",()=>{choose(group);byId("comparison").scrollIntoView();}));
+    const strip=node("div","strip");
+    for(const photo of photos)strip.append(tile(photo));
+    article.append(info,strip);list.append(article);
+  }
+}
+const options=groups.filter(group=>group.frames.length).flatMap(group=>group.kind==="blink"
+  ? [{group,label:"闭眼对照",defects:true},{group,label:"本组最佳图片"}]
+  : [{group,label:group.kind==="motion"||group.kind==="motion_blur"?"清晰度对照":labelFor(group)}]);
+let activeGroup;
+let firstPhoto;
+function choose(group,showDefect=false){
+  activeGroup=group;
+  const order=ranked(group);
+  const best=selected(group);
+  firstPhoto=best[0]||order[0];
+  if(!firstPhoto)return;
+  for(const element of document.querySelectorAll(".group"))element.classList.toggle("active",element.id==="group-"+group.id);
+  const controls=byId("compare-controls");controls.replaceChildren();
+  for(const option of options){const element=button(option.label,()=>choose(option.group,Boolean(option.defects)));element.setAttribute("aria-pressed",String(option.group===group&&Boolean(option.defects)===showDefect));controls.append(element);}
+  const sharpest=order.find(photo=>photo.iqa?.narrow?.relative_sharpness?.rank_in_group===1);
+  const weakest=order.find(photo=>photo!==firstPhoto&&defect(photo))||((firstPhoto.profile==="portrait"&&sharpest!==firstPhoto)?sharpest:null)||order.at(-1);
+  const alternatives=best.length>1&&!showDefect?best.slice(1):[weakest].filter(photo=>photo&&photo!==firstPhoto);
+  const grid=byId("compare-photos");grid.replaceChildren(tile(firstPhoto));
+  grid.classList.toggle("portrait-pair",[firstPhoto,...alternatives].every(photo=>photo.height>photo.width));
+  for(const photo of alternatives)grid.append(tile(photo,{label:photo.decision==="select"?"最佳图片":defect(photo)||"同组对照"}));
+  const notes=byId("compare-note");notes.replaceChildren(node("span","comparison-label",labelFor(group)+" · 已选 "+best.length+" 张"));
+  if(group.best_folder&&best.length)notes.append(link("查看最佳图片文件夹",group.best_folder));
+  const dropdown=byId("score-pick");dropdown.replaceChildren();
+  for(const photo of order.filter(photo=>photo!==firstPhoto)){
+    const option=node("option","",nameFor(photo)+" · 第 "+(photo.rank??"—")+" 名");option.value=keyFor(photo);dropdown.append(option);
+  }
+  dropdown.hidden=order.length===1;
+  let compared=alternatives[0];
+  if(compared)dropdown.value=keyFor(compared);
+  scores(compared);
+}
+const metricNames={detail:"清晰度",eye_focus:"眼部细节",exposure:"曝光",motion:"方向性"};
+function scoreCard(photo){
+  const card=node("div","score-side");card.append(tile(photo));
+  const top=node("div","score-top");
+  const result=node("div");result.append(node("p","","组内第 "+(photo.rank??"—")+" 名"));
+  if(defect(photo))result.append(node("p","",defect(photo)));
+  top.append(result,node("strong","",pretty(photo.score)));card.append(top);
+  for(const [key,name] of Object.entries(metricNames)){
+    const value=photo.components?.[key];
+    if(!Number.isFinite(value))continue;
+    const row=node("div","score-row");
+    const meter=node("meter");meter.max=100;meter.value=Math.min(100,Math.max(0,value));meter.setAttribute("aria-label",name);
+    row.append(node("span","",name),meter,node("span","",pretty(value)));card.append(row);
+  }
+  return card;
+}
+function scores(other){const panels=[scoreCard(firstPhoto)];if(other)panels.push(scoreCard(other));byId("scores").replaceChildren(...panels);}
+byId("score-pick").addEventListener("change",event=>scores(activeGroup.frames.find(photo=>keyFor(photo)===event.target.value)));
+if(groups.length){
+  const count=groups.reduce((sum,group)=>sum+group.frames.length,0);
+  const kept=groups.reduce((sum,group)=>sum+selected(group).length,0);
+  for(const [label,value] of [["照片",stats.frames??run.capture_frames??count],["连拍组",stats.capture_groups??groups.length],["场景",stats.scene_groups??(scenes.length||groups.length)],["最佳图片",stats.best_picture_count??kept]]){
+    const item=node("div");item.append(node("dt","",label),node("dd","",value));byId("metrics").append(item);
+  }
+  if(app.grouped_folder){const folder=byId("open-folders");folder.href=app.grouped_folder;folder.hidden=false;}
+  if(stats.input_formats?.RAW&&Object.keys(stats.input_formats).length>1){
+    byId("input-formats").textContent=Object.entries(stats.input_formats).map(([format, count])=>count+" 张 "+format).join(" · ");
+  }
+  if(app.quality_gallery){const gallery=byId("quality-gallery");gallery.href=app.quality_gallery;gallery.hidden=false;}
+  timeline();
+  sceneGallery();
+  choose(options.find(option=>option.group.frames.length>10)?.group||options[0].group);
+}else{
+  byId("groups").append(node("p","section-note","没有可读取的照片。"));byId("comparison").hidden=true;byId("scoring").hidden=true;
+}
+</script>
+</body>
+</html>
